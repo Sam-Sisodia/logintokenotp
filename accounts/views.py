@@ -22,6 +22,7 @@ class registeruser(APIView):
     def post(self,request):
         try:
             serializer = registeruser_serializer(data=request.data)
+              
             if serializer.is_valid():
                 user = User.objects.create(
                 username =  serializer.validated_data['email'],
@@ -29,6 +30,7 @@ class registeruser(APIView):
                 last_name =  serializer.validated_data['last_name'],
                 email =  serializer.validated_data['email'],
                 password =  serializer.validated_data['password'])
+                print(user)
                 
 
                 user.set_password(user.password)
